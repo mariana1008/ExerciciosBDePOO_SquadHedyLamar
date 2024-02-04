@@ -23,6 +23,17 @@
 - Mariana Santana Amaral
 
 ## Organização:
+
+Após uma reunião no Discord, abrimos uma enquete para dividir as atuações de cada participante. Temos as seguintes opções:
+
+**POO**
++ 6 participantes
+
+**Banco de Dados**
++ 5 participantes
+
+#### Obs: quem escolher bando de dados irá auxiliar as colegas com POO!!!
+
 <p align="center"> Criamos uma planilha online com as informações das questões, e assim cada uma pode ir selecionando as questões que foram fazendo e assinalando como "FEITO"!</p>
 
 
