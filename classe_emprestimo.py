@@ -6,10 +6,10 @@ class Emprestimo(Biblioteca):
         self._data_emprestimo = data
         self._data_devolucao = devolucao
         self._estado_exemplar = estado_livro
+        self._titulo = livro
         
     def realizar_emprestimo(self):
-        self._lista_exemplares -= 1
-        print(f"Empréstimo realizado para {self.nome}: {self._nome_livro}")
+        print(f"Empréstimo realizado para {self.nome}: {self._titulo}")
         return super().realizar_emprestimo()
     
     
