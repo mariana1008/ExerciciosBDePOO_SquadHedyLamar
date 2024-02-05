@@ -1,19 +1,13 @@
 from abc import ABC, abstractmethod
 
 class AbstrataBiblioteca(ABC):
-    def __init__(self,nome,telefone,nacionalidade,livro):
-        self._nome = nome
-        self._telefone = telefone
-        self._nacionalidade = nacionalidade
-        self._nome_livro = livro
+    def __init__(self):
+        pass
+    
     @abstractmethod
     def usuario(self):
         pass    
-    
-    @abstractmethod
-    def cadastrar_Livro(self):
-        pass
-    
+        
     @abstractmethod
     def realizar_emprestimo(self):
         pass
@@ -21,19 +15,16 @@ class AbstrataBiblioteca(ABC):
     @abstractmethod
     def realizar_devolucao(self):
         pass
-    
+
 class Biblioteca(AbstrataBiblioteca):
-    def __init__(self,nome,telefone,nacionalidade,livro):
-        super().__init__(nome,telefone,nacionalidade,livro)
+    def __init__(self):
+        super().__init__()
      
     def usuario(self):
-        print(f"Usuário {self.nome} cadastrado com sucesso!")    
-    
-    def cadastrar_Livro(self):
-        print(f"Livro tal cadastrado com sucesso!")
-    
+        print(f"Usuário cadastrado com sucesso!")    
+                    
     def realizar_emprestimo(self):
-        print(f"Empréstimo realizado para nome.usuario: nome.livro")
+        print(f"Empréstimo realizado ")
     
     def realizar_devolucao(self):
-        print(f"Devolução realizada por nome.usuario: nome.livro")
+        print(f"Devolução realizada ")
