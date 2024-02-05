@@ -8,7 +8,7 @@ class Livro(Biblioteca):
         self._lista_exemplares = exemplares 
         self._titulo = titulo
         self._autores = autores     
-        self.id = 0   
+        self.id = 0 
         
     def cadastrar_Livro(self):
         i = 1
