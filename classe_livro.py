@@ -1,7 +1,7 @@
 from classe_abstrata import Biblioteca
 import sqlite3
 
-conexao = sqlite3.connect('banco_biblioteca')
+conexao = sqlite3.connect('banco_biblioteca.db')
 cursor = conexao.cursor()
 
 class Livro(Biblioteca):
@@ -28,6 +28,7 @@ class Livro(Biblioteca):
         print(f"Livro {self._titulo} cadastrado com sucesso!")
     
     def adicionar_autor(self,autor):
+       #cursor.execute('INSERT INTO livros(id,autor) ')
         self._autores.append(autor)
     
     def realizar_emprestimo(self):
@@ -36,6 +37,7 @@ class Livro(Biblioteca):
             #print(f"aqui tem id {self.id_exemplares}")  
             print(f"Empréstimo realizado para o livro {self._titulo}, Exemplar {self.id}.")
             self._lista_exemplares -= 1
+            cursor.execute('UPDATE livros SET numero_exemplar -= 1 WHERE id = ? ', (self.id))
         else:
             print("não existem mais exemplares disponiveis")
             
