@@ -1,16 +1,25 @@
 from classe_abstrata import Biblioteca
+import sqlite3
+
+conexao = sqlite3.connect('banco_biblioteca')
+cursor = conexao.cursor()
 
 class Livro(Biblioteca):
-    def __init__(self,titulo,exemplares,autores):
+    def __init__(self,id,autor,titulo,editora,genero,exemplares):
         super().__init__()
-        self.id_exemplares = {}
-        self._total_exemplares = exemplares
-        self._lista_exemplares = exemplares 
+        self._id = id
+        self._autores = autor
         self._titulo = titulo
-        self._autores = autores     
+        self._editora = editora
+        self._genero = genero
+        self._total_exemplares = exemplares
         self.id = 0 
-        
+       
     def cadastrar_Livro(self):
+        cursor.execute(f'INSERT INTO livros(id,autor,titulo,editora,genero,numero_exemplar) VALUES(?,?,?,?,?,?)',{self._id},{self._autores},{self._titulo},{self._editora},{self._genero},{self._total_exemplares})
+        
+        conexao.commit()
+        
         i = 1
         while i <= self._total_exemplares:
             self.id_exemplares[i] = True
@@ -34,3 +43,4 @@ class Livro(Biblioteca):
     def imprimir(self):
         print(f"Titulo: {self._titulo} \nAutores: {self._autores} \nExemplares: {self._lista_exemplares}")
         
+conexao.close()

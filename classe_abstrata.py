@@ -1,5 +1,5 @@
 from abc import  ABC, abstractmethod
-from bancodedados import conexao
+
 
 class AbstrataBiblioteca(ABC):
     def __init__(self):
