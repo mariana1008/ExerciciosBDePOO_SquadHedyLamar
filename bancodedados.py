@@ -1,7 +1,7 @@
 ﻿import sqlite3
 
 # Conexão com o banco de dados
-conexao = sqlite3.connect('banco_biblioteca')
+conexao = sqlite3.connect('banco_biblioteca.db')
 print("Conexão bem-sucedida!")
 
 # Passando a conexão para uma nova variável
