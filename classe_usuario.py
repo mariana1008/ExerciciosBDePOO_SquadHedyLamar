@@ -1,4 +1,4 @@
-﻿from classe_abstrata_ import Biblioteca
+﻿from classe_abstrata import Biblioteca
 import sqlite3
 
 # Inicia conexão com o Banco de Dados
