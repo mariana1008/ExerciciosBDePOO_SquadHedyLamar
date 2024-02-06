@@ -39,11 +39,11 @@ class Usuario(Biblioteca):
 
 ############################## TESTES
 
-# # Cria um usuário e cadastra no banco de dados (executar duas vezes)
+# ## Cria um usuário e cadastra no banco de dados (executar duas vezes)
 # usuario1 = Usuario(id=1, nome="Maria", telefone="987654321", nacionalidade="Portuguesa")
 # usuario1.cadastrar_usuario()
 
-# # Imprime informações do usuário
+# ## Imprime informações do usuário
 # usuario1.imprimir()
 
 # Finaliza conexão com o Banco de Dados
