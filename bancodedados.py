@@ -1,5 +1,4 @@
 ﻿import sqlite3
-from usuario import *
 
 # Conexão com o banco de dados
 conexao = sqlite3.connect('banco_biblioteca.db')
@@ -19,7 +18,7 @@ cursor.execute('CREATE TABLE emprestimos(id INT, data_emprestimo DATE,  data_dev
 lista_nomes = ['Amanda', 'Gabriella', 'Jéssica', 'Hevilin', 'Fernanda', 'Lais', 'Raquel', 'Jhenyffer', 'Sara',  'Martha', 'Mariana'] 
 
 for index, nome in enumerate(lista_nomes):
-    Usuario(index, nome, '3433333333', 'BR').inserirUsuario()
+    cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade) VALUES(?,?,?,?)',(index, nome, '3433333333', 'BR'))
 
 """3. Consultas SQL"""    
 
