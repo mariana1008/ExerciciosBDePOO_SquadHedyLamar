@@ -37,6 +37,21 @@ class Usuario(Biblioteca):
     def __str__(self):
         return f"Informações do usuário(a) {self.nome}\n ID: {self.id}\nTelefone: {self.telefone}\nNacionalidade: {self.nacionalidade}"
 
+
+    def removerUsuarioPorId(id):
+        cursor.execute('DELETE FROM usuarios where id=?',(id,))
+        conexao.commit()
+
+    def listarUsuarios():
+        dados = cursor.execute('SELECT * FROM usuarios ORDER BY nome')
+        for usuario in dados:
+            print(usuario)
+        conexao.commit()
+
+    def removerUsuarios():
+        cursor.execute('DELETE FROM usuarios')
+        conexao.commit()
+        
 ############################## TESTES
 
 # ## Cria um usuário e cadastra no banco de dados (executar duas vezes)

@@ -25,7 +25,7 @@ cursor.execute("INSERT INTO emprestimos VALUES (1, '2023-01-15', '2023-02-15', '
 lista_nomes = ['Amanda', 'Gabriella', 'Jéssica', 'Hevilin', 'Fernanda', 'Lais', 'Raquel', 'Jhenyffer', 'Sara',  'Martha', 'Mariana'] 
 
 for index, nome in enumerate(lista_nomes):
-    cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade) VALUES(?,?,?,?)',(index, nome, '3433333333', 'BR'))
+    cursor.execute('INSERT INTO usuarios(nome, telefone, nacionalidade) VALUES(?,?,?)',(nome, '3433333333', 'BR'))
 # Inserir mais conjuntos de dados
 
 
