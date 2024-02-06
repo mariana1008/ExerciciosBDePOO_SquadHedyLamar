@@ -40,7 +40,7 @@ ceu_esta_em_todo_lugar = Livro(1,"Jandy","Céu está em todo lugar", "Campus","R
 ceu_esta_em_todo_lugar.realizar_emprestimo()
 ceu_esta_em_todo_lugar.realizar_emprestimo()
 ceu_esta_em_todo_lugar.realizar_emprestimo()
-ceu_esta_em_todo_lugar.realizar_emprestimo()
+ceu_esta_em_todo_lugar.realizar_emprestimo()  
 
 
 conexao.commit()
