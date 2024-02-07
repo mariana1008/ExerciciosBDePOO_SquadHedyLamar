@@ -29,3 +29,4 @@ class Biblioteca(AbstrataBiblioteca):
     
     def realizar_devolucao(self):
         print(f"Devolução realizada ")
+        

@@ -8,18 +8,22 @@ cursor = conexao.cursor()
 #1. Criação de tabelas
 # Criação das tabelas autores, livros, usuários e empréstimos
 cursor.execute('CREATE TABLE autores(id_autor INTEGER PRIMARY KEY, nome_autor VARCHAR(100))')
-cursor.execute('CREATE TABLE livros(id_titulo INT, id_autor INTEGER, titulo VARCHAR(100), editora VARCHAR(100), genero VARCHAR(50), numero_exemplar INT, FOREIGN KEY (id_autor) REFERENCES autores (id_autor))')
-cursor.execute('CREATE TABLE usuarios(id_usuario INTEGER PRIMARY KEY, nome VARCHAR(100), telefone VARCHAR(15), nacionalidade VARCHAR(50))')
+cursor.execute('CREATE TABLE livros(id_titulo INTEGER PRIMARY KEY, titulo VARCHAR(100), editora VARCHAR(100), genero VARCHAR(50), numero_exemplar INT)')
+cursor.execute('CREATE TABLE livro_autores(id_livro INTEGER, id_autor INTEGER, FOREIGN KEY (id_livro) REFERENCES livros(id_titulo), FOREIGN KEY (id_autor) REFERENCES autores(id_autor))')
+#cursor.execute('CREATE TABLE usuarios(id_usuario INTEGER PRIMARY KEY, nome VARCHAR(100), telefone VARCHAR(15), nacionalidade VARCHAR(50))')
 # Data fica como AAAA-MM-DD
-cursor.execute('CREATE TABLE emprestimos(id_emprestimo INTEGER PRIMARY KEY, data_emprestimo DATE, data_devolucao DATE, estado_exemplar VARCHAR(100), id_usuario INTEGER, FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario))')
+#cursor.execute('CREATE TABLE emprestimos(id_emprestimo INTEGER PRIMARY KEY, data_emprestimo DATE, data_devolucao DATE, estado_exemplar VARCHAR(100), id_usuario INTEGER, FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario))')
 
 
 #2. Inserção de Dados
 # Inserção de dados iniciais
 cursor.execute("INSERT INTO autores VALUES (1, 'George Orwell')")
-cursor.execute("INSERT INTO livros VALUES (1, 1, '1984', 'Editora A', 'Ficção Científica', 10)")
-cursor.execute("INSERT INTO usuarios VALUES (1, 'Amanda', '123456789', 'Brasileira')")
-cursor.execute("INSERT INTO emprestimos VALUES (1, '2023-01-15', '2023-02-15', 'Bom estado', 1)") 
+cursor.execute("INSERT INTO autores VALUES (2, 'Marcus')")
+cursor.execute("INSERT INTO livros VALUES (1,'1984', 'Editora A', 'Ficção Científica', 10)")
+cursor.execute("INSERT INTO livro_autores VALUES (1,1)")
+cursor.execute("INSERT INTO livro_autores VALUES (1,2)")
+#cursor.execute("INSERT INTO usuarios VALUES (1, 'Amanda', '123456789', 'Brasileira')")
+#cursor.execute("INSERT INTO emprestimos VALUES (1, '2023-01-15', '2023-02-15', 'Bom estado', 1)") 
 # Inserir mais conjuntos de dados
 
 
