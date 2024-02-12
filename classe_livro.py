@@ -81,4 +81,4 @@ ceu_esta_em_todo_lugar.adicionar_autor_ao_livro(2220)
 
 
 conexao.commit()
-conexao.close()-
+conexao.close()
