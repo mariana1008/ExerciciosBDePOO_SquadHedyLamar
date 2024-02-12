@@ -21,7 +21,21 @@ for index, nome in enumerate(lista_nomes):
     cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade) VALUES(?,?,?,?)',(index, nome, '3433333333', 'BR'))
 
 """3. Consultas SQL"""    
+#Consultar todos os usuarios
+#cursor.execute('SELECT * FROM usuarios')
+#dados_Todos_Usuarios = cursor.fetchall()
 
+
+#Consultar somente um usuario especifico por Nome.
+#nome_Usuario = 'Jessica'
+#verificar se o nome solicitado está em nosso banco de dados
+#if nome_Usuario in lista_nomes:
+ #   cursor.execute('SELECT * FROM usuarios WHERE nome= ?; ', (nome_Usuario))
+  #  usuario_especifico = cursor.fetchone()
+   # print(f"Usuário encontrado:\n{usuario_especifico}")
+#else:
+ #   print("Usuario não encontrado!")
+    
 """4. Atualizações e exclusões"""    
 
 # Envio das informações para o banco
