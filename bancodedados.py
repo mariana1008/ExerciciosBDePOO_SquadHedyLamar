@@ -32,9 +32,9 @@ for index, nome in enumerate(lista_nomes):
 #if nome_Usuario in lista_nomes:
  #   cursor.execute('SELECT * FROM usuarios WHERE nome= ?; ', (nome_Usuario))
   #  usuario_especifico = cursor.fetchone()
-   # print(f"Usuário encontrado:\n{usuario_especifico}")
+   # print(f"Usuário encontrado:\n{usuario_especifico}"   ) 
 #else:
- #   print("Usuario não encontrado!")
+ #   print(  "    Usuario não encontrado!"   )
     
 """4. Atualizações e exclusões"""    
 
