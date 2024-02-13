@@ -16,6 +16,7 @@ class Livro(Biblioteca):
         self.id = 0 
        
     def cadastrar_Livro(self):
+        #não deixar cadastrar livro com mesmo nome
         cursor.execute('INSERT INTO livros(id_titulo, titulo, editora, genero, numero_exemplar) VALUES (?, ?, ?, ?, ?)',(self._id_livro, self._titulo, self._editora, self._genero, self._total_exemplares))
         print(f"Livro {self._titulo} cadastrado com sucesso!")
     
@@ -54,6 +55,7 @@ class Livro(Biblioteca):
        
        
     def realizar_emprestimo(self):
+        #nao deixar realiar emprestimo sem livros no banco de dados
         if self._total_exemplares > 0:
             print(f"Empréstimo realizado para o livro {self._titulo}")
             self._total_exemplares -= 1
@@ -70,13 +72,13 @@ class Livro(Biblioteca):
     def imprimir(self):
         print(f"Titulo: {self._titulo} \nAutores: {self._autores} \nExemplares: {self._lista_exemplares}")
 
-ceu_esta_em_todo_lugar = Livro(1,'1984', 'Editora A', 'Ficção Científica', 10)
-#ceu_esta_em_todo_lugar.cadastrar_Livro()
+ceu_esta_em_todo_lugar = Livro(2,'1984', 'Editora A', 'Ficção Científica', 10)
+ceu_esta_em_todo_lugar.cadastrar_Livro()
 
 for _ in range(11):
     ceu_esta_em_todo_lugar.realizar_emprestimo()
 
-#ceu_esta_em_todo_lugar.cadastrar_autor(20,"pedro")
+ceu_esta_em_todo_lugar.cadastrar_autor(20,"pedro")
 ceu_esta_em_todo_lugar.adicionar_autor_ao_livro(2220)
 
 
