@@ -13,6 +13,7 @@ cursor = conexao.cursor()
 cursor.execute('CREATE TABLE autores(id_autor INTEGER PRIMARY KEY, nome_autor VARCHAR(100))')
 cursor.execute('CREATE TABLE livros(id_titulo INTEGER PRIMARY KEY, titulo VARCHAR(100), editora VARCHAR(100), genero VARCHAR(50), numero_exemplar INT)')
 cursor.execute('CREATE TABLE livro_autores(id_livro INTEGER, id_autor INTEGER, FOREIGN KEY (id_livro) REFERENCES livros(id_titulo), FOREIGN KEY (id_autor) REFERENCES autores(id_autor))')
+cursor.execute('''CREATE TABLE exemplares (id_exemplar INTEGER PRIMARY KEY AUTOINCREMENT,id_livro INTEGER,disponivel BOOLEAN,FOREIGN KEY (id_livro) REFERENCES livros(id_livro))''')
 
 cursor.execute('CREATE TABLE usuarios(id INT, nome VARCHAR(100), telefone VARCHAR(15), nacionalidade VARCHAR(100))')
 # Data fica como AAAA-MM-DD

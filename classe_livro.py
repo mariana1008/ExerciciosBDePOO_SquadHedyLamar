@@ -27,7 +27,13 @@ class Livro(Biblioteca):
         else:
             cursor.execute('INSERT INTO livros(id_titulo, titulo, editora, genero, numero_exemplar) VALUES (?, ?, ?, ?, ?)',(self._id_livro, self._titulo, self._editora, self._genero, self._total_exemplares))
             print(f"Livro {self._titulo} cadastrado com sucesso!")
-    
+            
+            for i in range(self._total_exemplares):
+                cursor.execute('INSERT INTO exemplares(id_livro, disponivel) VALUES (?, ?)', (self._id_livro, True))
+            print(f"{self._total_exemplares} exemplares cadastrados para o livro {self._titulo}")
+
+
+            
     def cadastrar_autor(self,id_autor,nome_autor):
         nomes_autores_lista = []
         nomes = cursor.execute("SELECT nome_autor FROM autores")
@@ -64,24 +70,23 @@ class Livro(Biblioteca):
        
     def realizar_emprestimo(self):
         #nao deixar realiar emprestimo sem livros no banco de dados
-        total_exemplar_bd = cursor.execute('SELECT numero_exemplar FROM livros WHERE id_titulo = ?', (self._id_livro,))
-        total_exemplar_bd = cursor.fetchone()[0]
-        if total_exemplar_bd > 0:
-            print(f"Empréstimo realizado para o livro {self._titulo}")
-            total_exemplar_bd -= 1
-            cursor.execute('UPDATE livros SET numero_exemplar = ? WHERE id_titulo = ?', (total_exemplar_bd, self._id_livro))
+        cursor.execute('SELECT id_exemplar FROM exemplares WHERE id_livro = ? AND disponivel = ? LIMIT 1', (self._id_livro, True))
+        id_exemplar = cursor.fetchone()
+        if id_exemplar:
+            id_exemplar_estado = id_exemplar[0]
+            cursor.execute('UPDATE exemplares SET disponivel = ? WHERE id_exemplar = ?', (False, id_exemplar_estado))
+            print(f"Empréstimo realizado com sucesso para o exemplar {id_exemplar_estado}.")
         else:
             print("não existem mais exemplares disponiveis")
       
-    def realizar_devolucao(self):
-       total_exemplar_bd = cursor.execute('SELECT numero_exemplar FROM livros WHERE id_titulo = ?', (self._id_livro,))
-       total_exemplar_bd = cursor.fetchone()[0]
-       if total_exemplar_bd < self._total_exemplares:
-            print(f"Devolução realizada para o livro {self._titulo}")
-            total_exemplar_bd += 1
-            cursor.execute('UPDATE livros SET numero_exemplar = ? WHERE id_titulo = ?', (total_exemplar_bd, self._id_livro))
+    def realizar_devolucao(self,id_exemplar_emprestado):
+       cursor.execute('SELECT id_exemplar FROM exemplares WHERE id_exemplar = ? AND disponivel = ? LIMIT 1', (id_exemplar_emprestado, False))
+       id_exemplar = cursor.fetchone()
+       if id_exemplar:
+            print(f"Devolução realizada para o livro {self._titulo} exemplar {id_exemplar[0]}")
+            cursor.execute('UPDATE exemplares SET disponivel = ? WHERE id_exemplar = ?', (True, id_exemplar_emprestado))
        else:
-           print("O número máximo de exemplares já foi atingido")        
+           print(f"O exemplar {id_exemplar_emprestado} já foi devolvido")        
 
     def renovar_emprestimo(self):
         pass
@@ -90,11 +95,11 @@ class Livro(Biblioteca):
         print(f"Titulo: {self._titulo} \nAutores: {self._autores} \nExemplares: {self._lista_exemplares}")
 
 ceu_esta_em_todo_lugar = Livro(4,'monitor', 'Editora A', 'Ficção Científica', 10)
-ceu_esta_em_todo_lugar.cadastrar_Livro()
+#ceu_esta_em_todo_lugar.cadastrar_Livro()
 
 #ceu_esta_em_todo_lugar.realizar_emprestimo()
 
-#ceu_esta_em_todo_lugar.realizar_devolucao()
+ceu_esta_em_todo_lugar.realizar_devolucao(1)
 
 #ceu_esta_em_todo_lugar.cadastrar_autor(20,"pedro")
 #ceu_esta_em_todo_lugar.adicionar_autor_ao_livro(20)
