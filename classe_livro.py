@@ -1,4 +1,5 @@
 from classe_abstrata import Biblioteca
+import datetime
 import sqlite3
 
 conexao = sqlite3.connect('banco_biblioteca.db')
@@ -27,7 +28,13 @@ class Livro(Biblioteca):
         else:
             cursor.execute('INSERT INTO livros(id_titulo, titulo, editora, genero, numero_exemplar) VALUES (?, ?, ?, ?, ?)',(self._id_livro, self._titulo, self._editora, self._genero, self._total_exemplares))
             print(f"Livro {self._titulo} cadastrado com sucesso!")
-    
+            
+            for i in range(self._total_exemplares):
+                cursor.execute('INSERT INTO exemplares(id_livro, disponivel) VALUES (?, ?)', (self._id_livro, True))
+            print(f"{self._total_exemplares} exemplares cadastrados para o livro {self._titulo}")
+
+
+            
     def cadastrar_autor(self,id_autor,nome_autor):
         nomes_autores_lista = []
         nomes = cursor.execute("SELECT nome_autor FROM autores")
@@ -60,31 +67,6 @@ class Livro(Biblioteca):
                 cursor.execute("INSERT INTO livro_autores VALUES (?,?)",(self._id_livro,id_autor))
         else:
             print('não existe um autor com esse id')
-       
-       
-    def realizar_emprestimo(self):
-        #nao deixar realiar emprestimo sem livros no banco de dados
-        total_exemplar_bd = cursor.execute('SELECT numero_exemplar FROM livros WHERE id_titulo = ?', (self._id_livro,))
-        total_exemplar_bd = cursor.fetchone()[0]
-        if total_exemplar_bd > 0:
-            print(f"Empréstimo realizado para o livro {self._titulo}")
-            total_exemplar_bd -= 1
-            cursor.execute('UPDATE livros SET numero_exemplar = ? WHERE id_titulo = ?', (total_exemplar_bd, self._id_livro))
-        else:
-            print("não existem mais exemplares disponiveis")
-      
-    def realizar_devolucao(self):
-       total_exemplar_bd = cursor.execute('SELECT numero_exemplar FROM livros WHERE id_titulo = ?', (self._id_livro,))
-       total_exemplar_bd = cursor.fetchone()[0]
-       if total_exemplar_bd < self._total_exemplares:
-            print(f"Devolução realizada para o livro {self._titulo}")
-            total_exemplar_bd += 1
-            cursor.execute('UPDATE livros SET numero_exemplar = ? WHERE id_titulo = ?', (total_exemplar_bd, self._id_livro))
-       else:
-           print("O número máximo de exemplares já foi atingido")        
-
-    def renovar_emprestimo(self):
-        pass
     
     def imprimir(self):
         print(f"Titulo: {self._titulo} \nAutores: {self._autores} \nExemplares: {self._lista_exemplares}")
@@ -94,7 +76,7 @@ ceu_esta_em_todo_lugar.cadastrar_Livro()
 
 #ceu_esta_em_todo_lugar.realizar_emprestimo()
 
-#ceu_esta_em_todo_lugar.realizar_devolucao()
+#ceu_esta_em_todo_lugar.realizar_devolucao(1)
 
 #ceu_esta_em_todo_lugar.cadastrar_autor(20,"pedro")
 #ceu_esta_em_todo_lugar.adicionar_autor_ao_livro(20)
