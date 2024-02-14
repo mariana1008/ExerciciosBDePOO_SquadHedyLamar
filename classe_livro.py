@@ -1,4 +1,5 @@
 from classe_abstrata import Biblioteca
+import datetime
 import sqlite3
 
 conexao = sqlite3.connect('banco_biblioteca.db')
@@ -66,40 +67,16 @@ class Livro(Biblioteca):
                 cursor.execute("INSERT INTO livro_autores VALUES (?,?)",(self._id_livro,id_autor))
         else:
             print('não existe um autor com esse id')
-       
-       
-    def realizar_emprestimo(self):
-        #nao deixar realiar emprestimo sem livros no banco de dados
-        cursor.execute('SELECT id_exemplar FROM exemplares WHERE id_livro = ? AND disponivel = ? LIMIT 1', (self._id_livro, True))
-        id_exemplar = cursor.fetchone()
-        if id_exemplar:
-            id_exemplar_estado = id_exemplar[0]
-            cursor.execute('UPDATE exemplares SET disponivel = ? WHERE id_exemplar = ?', (False, id_exemplar_estado))
-            print(f"Empréstimo realizado com sucesso para o exemplar {id_exemplar_estado}.")
-        else:
-            print("não existem mais exemplares disponiveis")
-      
-    def realizar_devolucao(self,id_exemplar_emprestado):
-       cursor.execute('SELECT id_exemplar FROM exemplares WHERE id_exemplar = ? AND disponivel = ? LIMIT 1', (id_exemplar_emprestado, False))
-       id_exemplar = cursor.fetchone()
-       if id_exemplar:
-            print(f"Devolução realizada para o livro {self._titulo} exemplar {id_exemplar[0]}")
-            cursor.execute('UPDATE exemplares SET disponivel = ? WHERE id_exemplar = ?', (True, id_exemplar_emprestado))
-       else:
-           print(f"O exemplar {id_exemplar_emprestado} já foi devolvido")        
-
-    def renovar_emprestimo(self):
-        pass
     
     def imprimir(self):
         print(f"Titulo: {self._titulo} \nAutores: {self._autores} \nExemplares: {self._lista_exemplares}")
 
 ceu_esta_em_todo_lugar = Livro(4,'monitor', 'Editora A', 'Ficção Científica', 10)
-#ceu_esta_em_todo_lugar.cadastrar_Livro()
+ceu_esta_em_todo_lugar.cadastrar_Livro()
 
 #ceu_esta_em_todo_lugar.realizar_emprestimo()
 
-ceu_esta_em_todo_lugar.realizar_devolucao(1)
+#ceu_esta_em_todo_lugar.realizar_devolucao(1)
 
 #ceu_esta_em_todo_lugar.cadastrar_autor(20,"pedro")
 #ceu_esta_em_todo_lugar.adicionar_autor_ao_livro(20)
