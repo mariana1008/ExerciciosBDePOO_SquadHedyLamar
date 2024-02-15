@@ -1,0 +1,20 @@
+from classe_abstrata import ConexaoBanco
+
+try:
+    # Criando uma instância da classe ConexaoBanco
+    conexao = ConexaoBanco('banco_biblioteca.db')
+    cursor = conexao.cursor()
+
+    # Verificando a conexão executando uma consulta simples
+    cursor.execute('SELECT 1')
+    resultado = cursor.fetchone()
+
+    if resultado:
+        print("Conexão bem-sucedida!")
+    else:
+        print("Problemas ao executar a consulta.")
+except Exception as e:
+    print(f"Erro na conexão: {e}")
+finally:
+    # Fechar a conexão quando não for mais necessária
+    conexao.fechar_conexao()

@@ -1,11 +1,8 @@
-import sqlite3
 
-# Conexão com o banco de dados
-conexao = sqlite3.connect('banco_biblioteca.db')
-print("Conexão bem-sucedida!")
+from classe_abstrata import conexaoBD
 
-# Passando a conexão para uma nova variável
-cursor = conexao.cursor()
+conexao = conexaoBD('banco_biblioteca')
+cursor = conexao.cursor
 
 """1. Criação de tabelas"""    
 #cursor.execute('CREATE TABLE livros(id INT, autor VARCHAR(100), titulo VARCHAR(100), editora VARCHAR(100), genero VARCHAR(50), numero_exemplar INT)')
@@ -26,26 +23,9 @@ lista_nomes = ['Amanda', 'Gabriella', 'Jéssica', 'Hevilin', 'Fernanda', 'Lais',
 for index, nome in enumerate(lista_nomes):
     cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade) VALUES(?,?,?,?)',(index, nome, '3433333333', 'BR'))
 
-"""3. Consultas SQL"""    
-#Consultar todos os usuarios
-#cursor.execute('SELECT * FROM usuarios')
-#dados_Todos_Usuarios = cursor.fetchall()
-
-
-#Consultar somente um usuario especifico por Nome.
-#nome_Usuario = 'Jessica'
-#verificar se o nome solicitado está em nosso banco de dados
-#if nome_Usuario in lista_nomes:
- #   cursor.execute('SELECT * FROM usuarios WHERE nome= ?; ', (nome_Usuario))
-  #  usuario_especifico = cursor.fetchone()
-   # print(f"Usuário encontrado:\n{usuario_especifico}"   ) 
-#else:
- #   print(  "    Usuario não encontrado!"   )
-    
-"""4. Atualizações e exclusões"""    
-
 # Envio das informações para o banco
 conexao.commit()
 print("Comando executado com sucesso!")
 
-conexao.close()
+
+conexao.fechar_conexao()

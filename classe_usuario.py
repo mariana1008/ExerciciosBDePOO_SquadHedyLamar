@@ -1,7 +1,8 @@
 import sqlite3
+from classe_abstrata import conexaoBD
 
-conexao = sqlite3.connect('banco_biblioteca.db')
-cursor = conexao.cursor()
+conexao = conexaoBD('banco_biblioteca')
+cursor = conexao.cursor
 
 class Usuario:
     def __init__(self, id, nome, telefone, nacionalidade):
@@ -33,3 +34,4 @@ class Usuario:
         self.id =  ''
         #cursor.execute('UPDATE')
 
+conexao.fechar_conexao()

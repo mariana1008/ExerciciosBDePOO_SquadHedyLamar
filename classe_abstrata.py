@@ -1,5 +1,16 @@
 from abc import  ABC, abstractmethod
+import sqlite3
 
+
+
+
+class conexaoBD:
+    def __init__(self, banco_biblioteca):
+        # Iniciando a conexão e o cursor
+        self.conexao = sqlite3.connect(banco_biblioteca)
+        self.cursor = self.conexao.cursor()
+    
+    
 
 class AbstrataBiblioteca(ABC):
     def __init__(self):

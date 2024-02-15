@@ -32,9 +32,7 @@ class Livro(Biblioteca):
             for i in range(self._total_exemplares):
                 cursor.execute('INSERT INTO exemplares(id_livro, disponivel) VALUES (?, ?)', (self._id_livro, True))
             print(f"{self._total_exemplares} exemplares cadastrados para o livro {self._titulo}")
-
-
-            
+       
     def cadastrar_autor(self,id_autor,nome_autor):
         nomes_autores_lista = []
         nomes = cursor.execute("SELECT nome_autor FROM autores")
