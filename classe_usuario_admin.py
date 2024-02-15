@@ -1,7 +1,7 @@
 ﻿# Classes com conceitos de classe, herança, propriedade, encapsulamento e classe abstrata
 import sqlite3
-
-from classe_usuario import Usuario
+from classe_emprestimo import emprestimo #importando classe_emprestimo
+from classe_usuario import Usuario #importando classe_usuario
 
 conexao = sqlite3.connect('banco_biblioteca.db')
 print("Conexão bem-sucedida!")
@@ -29,19 +29,36 @@ class userAdmin(Usuario):
             self.atualizarUsuario(nome, novo_telefone, nova_nacionalidade)
         else:
             print(f"Usuário com nome '{nome}' não encontrado.")
+            
+     #_______________________________________________________________________________
+    def removerUsuarioPorId(self, id):
+        # Chamar o método da classe base para realizar a exclusão
+        super().removerUsuarioPorId(id)
+#____________________________________________________________________________________      
+        #def realizaremprestimo(self): #parte que chamariamos da classe_emprestimo 
+                                  #para manipular os emprestimos e as devoluções
+        
+        
+
+
 # ___________________________________________________________________________________
-"área de teste de inserir usuario"
+"área de teste de  usuario_admin"
 if __name__ == "__main__":
     admin = userAdmin(nome="Admin", telefone="123456789", nacionalidade="BR")
 
-    # teste Inserindo um usuário comum para teste == ok
+    # teste Inserindo um usuário comum para teste ok
     #admin.inserirUsuario(nome="Sueli", telefone="4056328623", nacionalidade="BR", cargo="Comum")
     #admin.listarUsuarios()
         
         
-    # Atualizando o usuário comum == ok
-    admin.atualizarUsuarioComum(nome="Amanda", novo_telefone="9999", nova_nacionalidade="BR")
+    # Atualizando o usuário comum  teste ok
+    #admin.atualizarUsuarioComum(nome="Sueli", novo_telefone="90023", nova_nacionalidade="BR")
 
+    #excluir um usuario por id #teste ok
+    #admin.removerUsuarioPorId(19)  # Substitua 1 pelo ID do usuário que deseja remover
+    
+    # teste ok excluir todos os usuarios (atenção, essa opção somente poderá ser realizada por alguem com cargo Master em suma TEM que aparecer um erro aqui.)
+    # admin.removerUsuarios()
     # Listando todos os usuários
     admin.listarUsuarios()
 
