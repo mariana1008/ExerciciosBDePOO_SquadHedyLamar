@@ -14,16 +14,16 @@ cursor = conexao.cursor()
 #cursor.execute('CREATE TABLE livros(id_titulo INTEGER PRIMARY KEY, titulo VARCHAR(100), editora VARCHAR(100), genero VARCHAR(50), numero_exemplar INT)')
 #cursor.execute('CREATE TABLE livro_autores(id_livro INTEGER, id_autor INTEGER, FOREIGN KEY (id_livro) REFERENCES livros(id_titulo), FOREIGN KEY (id_autor) REFERENCES autores(id_autor))')
 #cursor.execute('''CREATE TABLE exemplares (id_exemplar INTEGER PRIMARY KEY AUTOINCREMENT,id_livro INTEGER,disponivel BOOLEAN,FOREIGN KEY (id_livro) REFERENCES livros(id_livro))''')
-#cursor.execute('CREATE TABLE usuarios(id INT, nome VARCHAR(100), telefone VARCHAR(15), nacionalidade VARCHAR(100)')
+cursor.execute('CREATE TABLE usuarios(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), telefone VARCHAR(15), nacionalidade VARCHAR(100), cargo VARCHAR(100))')
 # Data fica como AAAA-MM-DD
 #cursor.execute('CREATE TABLE emprestimos(id INT, data_emprestimo DATE,  data_devolucao DATE, estado_exemplar VARCHAR(100))')
-cursor.execute('ALTER TABLE usuarios ADD COLUMN cargo VARCHAR(100)')
+
 """2. Inserção de Dados"""    
 # Inserindo dados em usuarios
-#lista_nomes = ['Amanda', 'Gabriella', 'Jéssica', 'Hevilin', 'Fernanda', 'Lais', 'Raquel', 'Jhenyffer', 'Sara',  'Martha', 'Mariana'] 
+lista_nomes = ['Amanda', 'Gabriella', 'Jéssica', 'Hevilin', 'Fernanda', 'Lais', 'Raquel', 'Jhenyffer', 'Sara',  'Martha', 'Mariana'] 
 
-#for index, nome in enumerate(lista_nomes):
-    #cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade) VALUES(?,?,?,?)',(index, nome, '3433333333', 'BR'))
+for index, nome in enumerate(lista_nomes):
+    cursor.execute('INSERT INTO usuarios(id, nome, telefone, nacionalidade, cargo) VALUES(?,?,?,?,?)',(index, nome, '3433333333', 'BR', 'comum'))
 
 #"""3. Consultas SQL"""    
 #Consultar todos os usuarios
